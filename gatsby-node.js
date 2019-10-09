@@ -29,4 +29,18 @@ exports.createPages = async ({ graphql, actions }) => {
   })
 }
 
-exports.sourceNodes = ({ actions }) => {}
+exports.sourceNodes = ({ actions }) => {
+  const { createTypes } = actions
+  const typeDefs = `
+    type contentfulBlogPostLeadParagraphTextNode implements Node {
+      leadParagraph: String
+    }
+
+    type ContentfulBlogPost implements Node {
+      author: String
+      leadParagraph: contentfulBlogPostLeadParagraphTextNode
+    }
+  `
+
+  createTypes(typeDefs)
+}
