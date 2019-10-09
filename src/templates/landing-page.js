@@ -33,26 +33,28 @@ export const query = graphql`
       title
       highlights {
         __typename
-        ... on ContentfulBlogPost {
-          author
-          heading
-          slug
-          leadParagraph {
-            leadParagraph
-          }
-          body {
-            childMarkdownRemark {
-              html
+        ... on Node {
+          ... on ContentfulBlogPost {
+            author
+            heading
+            slug
+            leadParagraph {
+              leadParagraph
+            }
+            body {
+              childMarkdownRemark {
+                html
+              }
             }
           }
-        }
-        ... on ContentfulProduct {
-          name
-          slug
-          price
-          description {
-            childMarkdownRemark {
-              html
+          ... on ContentfulProduct {
+            name
+            slug
+            price
+            description {
+              childMarkdownRemark {
+                html
+              }
             }
           }
         }
